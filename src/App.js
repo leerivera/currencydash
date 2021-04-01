@@ -8,11 +8,21 @@ export default function App() {
 
   useEffect(() => {
     ws.current = new WebSocket("wss://ws-feed.pro.coinbase.com")
+    let pairs = [];
 
     const apiCall = async () => {
       await fetch(url + "/products")
       .then((res) => res.json())
-      .then((data) => console.log(data))
+      .then((data) => (pairs = data));
+
+      let filtered = pairs.filter((pair) => {
+        if (pair.quote_currency === "USD") {
+          console.log(pair)
+          return pair;
+        }
+      });
+        
+
     };
     apiCall();
 
