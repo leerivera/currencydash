@@ -2,6 +2,10 @@ import React, { useState, UseEffect, useRef, useEffect } from "react";
 import './App.css';
 
 export default function App() {
+  const [currencies, setCurrencies] = useState([]);
+  const [price, setPrice] = useState("0.00");
+  const [pair, setPair] = useState("");
+  const [pastData, setPastData] = useState({});
   const ws = useRef(null);
 
   const url = "https://api.pro.coinbase.com";
